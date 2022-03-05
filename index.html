@@ -8,25 +8,31 @@
     <link rel="stylesheet" href="./assets/css/style.css" />
 </head>
 <body>
-    <main>
     <div class="container">
         <h1 class="welcome">Welcome to the Coding quiz</h1>
         <h2>Click on the button to start the quiz</h2>
-        <h2 id="countdown"></h2>
+        <h3>You will have 60 seconds to complete the quiz</h3>
+        <h3>Wrong answers will deduct 10 seconds</h3>
+        <h4 id="countdown"></h4>
         <p id="main"></p>
-        <button id="start-btn">Start Quiz</button>
-    </div>
+        
     <div id="question-container" class="hide">
         <div id="question">Question</div>
         <div id="answer-buttons" class="btn-layout">
-            <button class="btn">Answer 1</button>
-            <button class="btn">Answer 2</button>
-            <button class="btn">Answer 3</button>
-            <button class="btn">Answer 4</button>
+            <button class="btn">Answer A</button>
+            <button class="btn">Answer B</button>
+            <button class="btn">Answer C</button>
+            <button class="btn">Answer D</button>
         </div>
     </div>
+    <div class="controls">
+        <button id="start-btn" class="start-btn btn">Start Quiz</button>
+        <button id="next-btn" class="next-btn btn hide">Next</button>
+    </div>
+
     </main>
     <script src="./assets/js/script.js"></script>
+    
     
 </body>
 </html>
