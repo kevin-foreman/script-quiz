@@ -1,3 +1,5 @@
+
+/* styling for the header which informas the user about the rules */
 header {
   margin-left: auto;
   margin-right: auto;
@@ -13,7 +15,7 @@ header {
     text-align: center;
   }
   
-
+/* styling that applies to the entire body of the quiz */
  body {
     padding: 0;
     margin: 0;
@@ -24,13 +26,6 @@ header {
     background-color:aquamarine
   }
   
-  #main {
-    margin-bottom: 20px;
-    font-size: 100px;
-    width: 100%;
-    height: 25px;
-  }
-
   .container {
       width: 800px;
       max-width: 80%;
