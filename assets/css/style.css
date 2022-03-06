@@ -29,6 +29,7 @@ header {
   .container {
       width: 800px;
       max-width: 80%;
+      border-radius: 
   }
 
   #start-btn:hover {
