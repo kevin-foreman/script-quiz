@@ -1,14 +1,11 @@
 // start quiz elements, and question and answer elements
 // use "cards" for each question so they're contained nicely
 
-var startButton = document.getElementById("start-btn");
-var infoEl = document.getElementById("info");
-var questionContainer = document.getElementById("question-card");
-var questionText = document.getElementById("question-1");
-var answerText = document.getElementById("answer-a");
-var answerText = document.getElementById("answer-b");
-var answerText = document.getElementById("answer-c");
-var answerText = document.getElementById("answer-d");
+var startButton = document.getElementById('start-btn');
+var nextButton = document.getElementById('next-btn');
+var questionContainerElement = document.getElementById('question-container');
+var questionEl = document.getElementById('question');
+var answerButtonsEl = document.getElementById('answer-buttons');
 
 
 
@@ -32,7 +29,9 @@ function timer()
      clearInterval(counter);
      //counter ended, do something here
      // display score in relation to current high score
-     return;
+     // figure out how to store final score in local storage
+     // something like localStorage.setItem  --and-- localStorage.getItem
+     // return;
    
   }
   document.getElementById("timer").innerHTML=count + " seconds remaining"; // watch for spelling

@@ -40,6 +40,76 @@ header {
       color: green;
   }
 
+  /* styling for the buttons, might re-factor later, but wanted to maintain the ability to style buttons separately depending on the type of quiz
+*/
+  .start-btn {
+    border-radius: 20px; 
+    background-color: orange;
+    padding: 5px 10px;
+    color: white;
+    font-weight: bold;
+    outline: none;
+  }
+
+  .next-btn {
+    border-radius: 20px; 
+    background-color: orange;
+    padding: 5px 10px;
+    color: white;
+    outline: none;
+    font-weight: bold;
+  }
+
+  .btn-a {
+    border-radius: 20px; 
+    background-color: orange;
+    padding: 5px 10px;
+    color: white;
+    outline: none;
+    font-weight: bold;
+  }
+
+  .btn-b {
+    border-radius: 20px; 
+    background-color: orange;
+    padding: 5px 10px;
+    color: white;
+    outline: none;
+    font-weight: bold;
+  }
+
+  .btn-c {
+    border-radius: 20px; 
+    background-color: orange;
+    padding: 5px 10px;
+    color: white;
+    outline: none;
+    font-weight: bold;
+  }
+
+  .btn-d {
+    border-radius: 20px; 
+    background-color: orange;
+    padding: 5px 10px;
+    color: white;
+    outline: none;
+    font-weight: bold;
+  }
+
+  .btn-layout {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 10px;
+    margin: 20px 0;
+  }
+
+  .start-btn, .next-btn {
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 10px 20px;
+    margin-top: 20px;
+  }
+
   .hidden {
     display: none;
   }
@@ -49,11 +119,13 @@ header {
   }
 
   footer {
-    display: flex;
+    display: inline;
     align-items: bottom center;
-    position: absolute;
+    position: relative;
   }
 
-  /* #start-btn {
-      
-  } */
+  .navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
