@@ -5,34 +5,47 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coding Quiz</title>
-    <link rel="stylesheet" href="./assets/css/style.css" />
-</head>
+    <link href="./assets/css/style.css" rel="stylesheet" />
+    </head>
+    
 <body>
-    <div class="container">
-        <h1 class="welcome">Welcome to the Coding quiz</h1>
-        <h2>Click on the button to start the quiz</h2>
+    <header>
+        <h1 id="welcome">Welcome to the coding speed quiz</h1>
+        <h2>Click on the start button to start the quiz</h2>
         <h3>You will have 60 seconds to complete the quiz</h3>
         <h3>Wrong answers will deduct 10 seconds</h3>
-        <h4 id="countdown"></h4>
-        <p id="main"></p>
-        
+    </header>
+
+    <div class="container">
     <div id="question-container" class="hide">
         <div id="question">Question</div>
         <div id="answer-buttons" class="btn-layout">
-            <button class="btn">Answer A</button>
-            <button class="btn">Answer B</button>
-            <button class="btn">Answer C</button>
-            <button class="btn">Answer D</button>
+            <button class="btn-a">Answer A</button>
+            <button class="btn-b">Answer B</button>
+            <button class="btn-c">Answer C</button>
+            <button class="btn-d">Answer D</button>
         </div>
+    </div>
     </div>
     <div class="controls">
         <button id="start-btn" class="start-btn btn">Start Quiz</button>
         <button id="next-btn" class="next-btn btn hide">Next</button>
     </div>
 
-    </main>
+    <footer class="timer">
+        <span id="timer"></span>
+    </footer>
+
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-ui-touch-punch@0.2.3/jquery.ui.touch-punch.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="./assets/js/script.js"></script>
-    
-    
 </body>
+
+
 </html>

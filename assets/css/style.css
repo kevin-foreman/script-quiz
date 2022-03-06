@@ -1,3 +1,11 @@
+header {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  padding: 20px;
+  margin-bottom: 120px
+}
+
 .container {
     margin: auto;
     width: 100%;
@@ -5,8 +13,15 @@
     text-align: center;
   }
   
-  .welcome {
-    margin-bottom: 20px;
+
+ body {
+    padding: 0;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color:aquamarine
   }
   
   #main {
@@ -25,6 +40,20 @@
       color: green;
   }
 
-  #start-btn {
-      
+  .hidden {
+    display: none;
   }
+
+  .timer {
+    align-items: bottom center;
+  }
+
+  footer {
+    display: flex;
+    align-items: bottom center;
+    position: absolute;
+  }
+
+  /* #start-btn {
+      
+  } */
