@@ -1,11 +1,14 @@
 // start quiz elements, and question and answer elements
 // use "cards" for each question so they're contained nicely
 
-var startButton = document.getElementById('start-btn');
-var nextButton = document.getElementById('next-btn');
-var questionContainerEl = document.getElementById('question-container');
-var questionEl = document.getElementById('question');
-var answerButtonsEl = document.getElementById('answer-buttons');
+var startButton = document.getElementById("start-btn");
+var nextButton = document.getElementById("next-btn");
+var questionContainerEl = document.getElementById("question-container");
+var questionEl = document.getElementById("question");
+var answerButtonsEl = document.getElementById("answer-buttons");
+var count=60;
+
+// var questionImage = document.getElementById('question-image');
 
 
 
@@ -15,9 +18,11 @@ var answerButtonsEl = document.getElementById('answer-buttons');
 $("#start-btn").click(function() {
     alert("Good luck!");
     startGame();
-    var count=60;
+    
 
 var counter=setInterval(timer, 1000); // counts down by 1 second
+// listen for a click on an incorrect answer, and deduct 10 seconds
+
 
 function timer()
 {
@@ -31,23 +36,33 @@ if (count <= 0)
      // figure out how to store final score in local storage
      // something like localStorage.setItem  --and-- localStorage.getItem
      // return;
-
-}
+};
+// Add code to html for showing the number of seconds on the page using span
   document.getElementById("timer").innerHTML=count + " seconds remaining"; // prints the time plus the words ... seconds remaining
 }
 });
+
+var score =0;
+document.getElementById("answer-buttons").onclick = function() {
+    localStorage.setItem("score", JSON.stringify(score));
+};
+
+var loadScores = function() {
+    score = JSON.parse(localStorage.getItem("score"));
+}
 // user selects next question, give some encouragement
 // increment the question index by one to get another random question from the array
 // call for the next random question
+
 $("#next-btn").click(function() {
     alert("Keep it up!");
     currentQuestionIndex++;
     getNextQuestion();
-})
+});
 
-var shuffledQuestions = function(){}
+var randomQuestions = function(){};
 var currentQuestionIndex= function(){};
-console.log(shuffledQuestions, currentQuestionIndex);
+// console.log(randomQuestions, currentQuestionIndex);
 
 // Start game function which will hide the start button by added the hide class
 // will also reveal the question container element by removing that class
@@ -55,8 +70,8 @@ var startGame = function() {
     startButton.classList.add('hide');
     // math.random generates a number betwee one and zero
     // grab a question whether the number of the question is either more than zero or less than zero 50% of the time, so it's random
-    shuffledQuestions = questions.sort(() => Math.random() - .5);
-    currentQuestionIndex = 0
+    randomQuestions = questions.sort(() => Math.random() - .5);
+    currentQuestionIndex = 0;
     questionContainerEl.classList.remove('hide');
     getNextQuestion();
     console.log(currentQuestionIndex);
@@ -66,37 +81,43 @@ var startGame = function() {
 // make a function to move through the questions after the currentQuestionIndex
 var getNextQuestion = function() {
     clearAnswers();
-    showQuestion(shuffledQuestions[currentQuestionIndex]);
+    showQuestion(randomQuestions[currentQuestionIndex]);
 };
 // only display the amount of answer buttons to match the number of available answers
 // clear old answers for a new question and answer
 // make the next question button visible after an answer
 // make the next question button hide after getNextQuestion
 var clearAnswers = function() {
-    clearStatusClass(document.body)
-    nextButton.classList.add('hide')
+    clearStatusClass(document.body);
+    nextButton.classList.add('hide');
     while (answerButtonsEl.firstChild) {
     answerButtonsEl.removeChild(answerButtonsEl.firstChild)
-    }
+    };
 };
 
 var showQuestion = function(question) {
-    questionEl.innerText = question.question
+    questionEl.innerText = question.question;
+    // questionImage.innerHTML = "<img src="+question.image+">";
+    // console.log(question.image);
     question.answers.forEach(answer => {
-    var button = document.createElement('button')
+    var button = document.createElement('button');
     button.innerText = answer.text
-    button.classList.add('btn')
+    button.classList.add('btn');
     if (answer.correct) {
         button.dataset.correct = answer.correct
     }
-    button.addEventListener('click', selectAnswer)
-    answerButtonsEl.appendChild(button)
-    })
+    button.addEventListener('click', selectAnswer);
+    answerButtonsEl.appendChild(button);
+    });
 };
+
+// store scores in local storage
+
 
 // As the user selects an answer, reveal either the next question button or the restart
 // then move on to the next question in the array
 // send feedback depending on where the user clicked
+// Add restart function
 var selectAnswer = function(e) {
     var selectedButton = e.target
     var correct = selectedButton.dataset.correct
@@ -106,11 +127,12 @@ var selectAnswer = function(e) {
     Array.from(answerButtonsEl.children).forEach(button => {
     setStatusClass(button, button.dataset.correct)
     })
-    if (shuffledQuestions.length > currentQuestionIndex + 1) {
-    nextButton.classList.remove('hide')
+    if (randomQuestions.length > currentQuestionIndex + 1) {
+    nextButton.classList.remove('hide');
     } else {
-    startButton.innerText = 'Restart'
-    startButton.classList.remove('hide')
+    alert("You answered all the questions, let's see your score")
+    startButton.innerText = "Restart";
+    startButton.classList.remove('hide');
     }
 };
 
@@ -118,24 +140,26 @@ var selectAnswer = function(e) {
 // make all the incorrect answers red
 // make all the correct answers green by adding the class, and add the corresponding CSS
 var setStatusClass = function(element, correct) {
-    clearStatusClass(element)
+    clearStatusClass(element);
     if (correct) {
-    element.classList.add('correct')
+    element.classList.add('correct');
+    score++;
     } else {
-    element.classList.add('incorrect')
+    element.classList.add('incorrect');
+    count = count -2;
     }
 };
 
 var clearStatusClass = function(element) {
-    element.classList.remove('correct')
-    element.classList.remove('incorrect')
+    element.classList.remove('correct');
+    element.classList.remove('incorrect');
 };
 
   // function endGame() {
-//     document.getElementById("start-btn").setAttribute("class", "hidden");
+//     
 // }
 
-// Add code to html for showing the number of seconds on the page
+
 
 
 // Questions array, yes it's long sorry about that, a refactor might include a separate JS file to keep this functionality cleaner, and allow swapping to different question sets
@@ -145,8 +169,7 @@ var clearStatusClass = function(element) {
 var questions = [ // some questions will have images, add them as an additional property inside this array
     {
     question: 'What is a CDN?',
-    // image: <img src ="./assets/img/question-0-img.png" />,
-    // "./assets/img/question-0-img.png",
+    // image: "../assets/img/question-0-img.png",
     
       // answer array inside question array
     answers: [
@@ -180,15 +203,15 @@ var questions = [ // some questions will have images, add them as an additional 
         { text: 'It refers to the HTML element we want to affect as a result of our dispatched event.', correct: false }
     ]
     },
-    {
-    question: 'What is the JavaScript equivalent to a jQuery Selector?',
-    answers: [
-        { text: '.getElementByClass()', correct: false },
-        { text: '.querySelectory()', correct: true },
-        { text: '.querybyID()', correct: false },
-        { text: '.documentElement()', correct: false }
-    ]
-    },
+    // {
+    // question: 'What is the JavaScript equivalent to a jQuery Selector?',
+    // answers: [
+    //     { text: '.getElementByClass()', correct: false },
+    //     { text: '.querySelectory()', correct: true },
+    //     { text: '.querybyID()', correct: false },
+    //     { text: '.documentElement()', correct: false }
+    // ]
+    // },
     {
     question: 'If you save your array of objects to the browser local storage and it looks like [Object object] when you visit it in Chrome DevTools, what is wrong?',
     answers: [
@@ -205,15 +228,15 @@ var questions = [ // some questions will have images, add them as an additional 
         { text: '.mouseover()', correct: false }
     ]
     },
-    {
-    question: 'What is the JavaScript equivalent to a jQuery Selector?',
-    nswers: [
-        { text: '.getElementByClass()', correct: false },
-        { text: '.querySelectory()', correct: true },
-        { text: '.querybyID()', correct: false },
-        { text: '.documentElement()', correct: false }
-    ]
-    },
+    // {
+    // question: 'What is the JavaScript equivalent to a jQuery Selector?',
+    // nswers: [
+    //     { text: '.getElementByClass()', correct: false },
+    //     { text: '.querySelectory()', correct: true },
+    //     { text: '.querybyID()', correct: false },
+    //     { text: '.documentElement()', correct: false }
+    // ]
+    // },
     {
     question: 'Which element can the submit event be attached to?',
     answers: [

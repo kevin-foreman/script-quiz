@@ -31,7 +31,7 @@ body {
       max-width: 80%;
       background-color: white;
       border-radius: 10px;
-      padding: 60px;
+      padding: 80px;
   }
 
   #start-btn:hover {
@@ -95,6 +95,7 @@ body {
 
   .btn.correct {
     background-color: green;
+    
   }
 
   .btn.incorrect {
