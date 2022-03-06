@@ -47,9 +47,15 @@ document.getElementById("answer-buttons").onclick = function() {
     localStorage.setItem("score", JSON.stringify(score));
 };
 
-var loadScores = function() {
-    score = JSON.parse(localStorage.getItem("score"));
+ var loadScores = function() {
+     score = JSON.parse(localStorage.getItem("score"));
+     load = window.localStorage;
+     loadScores();
 }
+
+window.addEventListener("DOMContentLoaded", (event) => {
+    console.log("DOM fully loaded and parsed");
+})
 // user selects next question, give some encouragement
 // increment the question index by one to get another random question from the array
 // call for the next random question
@@ -114,23 +120,24 @@ var showQuestion = function(question) {
 // store scores in local storage
 
 
-// As the user selects an answer, reveal either the next question button or the restart
+// As the user selects an answer, reveal the next question button
 // then move on to the next question in the array
 // send feedback depending on where the user clicked
-// Add restart function
+// Add restart modification for when all the questions have been answered
+// Add restart modification for when the timer runs out 
 var selectAnswer = function(e) {
     var selectedButton = e.target
     var correct = selectedButton.dataset.correct
-    setStatusClass(document.body, correct)
+    setStatusClass(document.body, correct);
 
     // Convert to an array
     Array.from(answerButtonsEl.children).forEach(button => {
     setStatusClass(button, button.dataset.correct)
     })
-    if (randomQuestions.length > currentQuestionIndex + 1) {
+    if (randomQuestions.length > currentQuestionIndex + 1 && count >= 1) {
     nextButton.classList.remove('hide');
     } else {
-    alert("You answered all the questions, let's see your score")
+    alert("You answered all the questions, or you ran out of time, let's see your score")
     startButton.innerText = "Restart";
     startButton.classList.remove('hide');
     }
