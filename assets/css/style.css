@@ -16,7 +16,7 @@ header {
   }
   
 /* styling that applies to the entire body of the quiz */
- body {
+body {
     padding: 0;
     margin: 0;
     width: 100vw;
@@ -29,7 +29,9 @@ header {
   .container {
       width: 800px;
       max-width: 80%;
-      border-radius: 
+      background-color: white;
+      border-radius: 10px;
+      padding : 30px;
   }
 
   #start-btn:hover {

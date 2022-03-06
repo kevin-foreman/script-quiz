@@ -21,8 +21,8 @@ var counter=setInterval(timer, 1000); // counts down by 1 second
 
 function timer()
 {
-  count=count-1;
-  if (count <= 0)
+count=count-1;
+if (count <= 0)
     {
     clearInterval(counter);
      //counter ended, do something here
@@ -52,6 +52,7 @@ var setNextQuestion = function() {
     resetState()
     showQuestion(shuffledQuestions[currentQuestionIndex])
 };
+// only display the amount of answer buttons to match the number of available answers
 
 var resetState = function() {
     clearStatusClass(document.body)
@@ -64,14 +65,14 @@ var resetState = function() {
 var showQuestion = function(question) {
     questionEl.innerText = question.question
     question.answers.forEach(answer => {
-      const button = document.createElement('button')
-      button.innerText = answer.text
-      button.classList.add('btn')
-      if (answer.correct) {
+    const button = document.createElement('button')
+    button.innerText = answer.text
+    button.classList.add('btn')
+    if (answer.correct) {
         button.dataset.correct = answer.correct
-      }
-      button.addEventListener('click', selectAnswer)
-      answerButtonsEl.appendChild(button)
+    }
+    button.addEventListener('click', selectAnswer)
+    answerButtonsEl.appendChild(button)
     })
 };
 
@@ -96,16 +97,16 @@ var selectAnswer = function(e) {
 var setStatusClass = function(element, correct) {
     clearStatusClass(element)
     if (correct) {
-      element.classList.add('correct')
+    element.classList.add('correct')
     } else {
-      element.classList.add('wrong')
+    element.classList.add('wrong')
     }
 };
 
 var clearStatusClass = function(element) {
     element.classList.remove('correct')
     element.classList.remove('wrong')
-  }
+};
 
   // function endGame() {
 //     document.getElementById("start-btn").setAttribute("class", "hidden");
