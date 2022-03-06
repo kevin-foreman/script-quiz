@@ -93,19 +93,19 @@ var selectAnswer = function(e) {
     }
 };
 
-// Give feedback if the user selects the correct or wrong answer
+// Give feedback if the user selects the correct or incorrect answer
 var setStatusClass = function(element, correct) {
     clearStatusClass(element)
     if (correct) {
     element.classList.add('correct')
     } else {
-    element.classList.add('wrong')
+    element.classList.add('incorrect')
     }
 };
 
 var clearStatusClass = function(element) {
     element.classList.remove('correct')
-    element.classList.remove('wrong')
+    element.classList.remove('incorrect')
 };
 
   // function endGame() {
@@ -125,7 +125,7 @@ var questions = [
 
     answers: [
           // return true if the correct answer was selected
-          // return false if the wrong answer is selected
+          // return false if the incorrect answer is selected
         { text: '5 seconds', correct: false },
         { text: 'It will never reach 5', correct: false },
         { text: '25 seconds', correct: true },

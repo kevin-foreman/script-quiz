@@ -31,7 +31,7 @@ body {
       max-width: 80%;
       background-color: white;
       border-radius: 10px;
-      padding : 30px;
+      padding: 60px;
   }
 
   #start-btn:hover {
@@ -58,39 +58,14 @@ body {
     font-weight: bold;
   }
 
-  .btn-a {
+  .btn {
+    font-family: "Staatliches" , "sans-serif";
     border-radius: 20px; 
     background-color: orange;
     padding: 5px 10px;
-    color: white;
+    color: black;
     outline: none;
-    font-weight: bold;
-  }
-
-  .btn-b {
-    border-radius: 20px; 
-    background-color: orange;
-    padding: 5px 10px;
-    color: white;
-    outline: none;
-    font-weight: bold;
-  }
-
-  .btn-c {
-    border-radius: 20px; 
-    background-color: orange;
-    padding: 5px 10px;
-    color: white;
-    outline: none;
-    font-weight: bold;
-  }
-
-  .btn-d {
-    border-radius: 20px; 
-    background-color: orange;
-    padding: 5px 10px;
-    color: white;
-    outline: none;
+    font-size: 1.25rem;
     font-weight: bold;
   }
 
@@ -102,14 +77,24 @@ body {
   }
 
   .start-btn, .next-btn {
+    font-family: "Staatliches" , "sans-serif";
     font-size: 1.5rem;
     font-weight: bold;
     padding: 10px 20px;
+    color: black;
     margin-top: 20px;
   }
 
   .hidden {
     display: none;
+  }
+
+  .btn.correct {
+    background-color: green;
+  }
+
+  .btn.incorrect {
+    background-color: red;
   }
 
   .timer {
