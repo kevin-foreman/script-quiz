@@ -37,7 +37,7 @@ if (count <= 0)
 }
 });
 // user selects next question, give some encouragement
-// increment the question index by one to get another random question
+// increment the question index by one to get another random question from the array
 // call for the next random question
 $("#next-btn").click(function() {
     alert("Keep it up!");
@@ -45,7 +45,8 @@ $("#next-btn").click(function() {
     getNextQuestion();
 })
 
-var shuffledQuestions, currentQuestionIndex = function(){};
+var shuffledQuestions = function(){}
+var currentQuestionIndex= function(){};
 console.log(shuffledQuestions, currentQuestionIndex);
 
 // Start game function which will hide the start button by added the hide class

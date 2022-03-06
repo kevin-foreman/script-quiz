@@ -89,6 +89,10 @@ body {
     display: none;
   }
 
+  .hide {
+    display: none;
+  }
+
   .btn.correct {
     background-color: green;
   }
