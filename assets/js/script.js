@@ -6,7 +6,8 @@ var nextButton = document.getElementById("next-btn");
 var questionContainerEl = document.getElementById("question-container");
 var questionEl = document.getElementById("question");
 var answerButtonsEl = document.getElementById("answer-buttons");
-var count=60;
+var finalScore = localStorage.getItem("finalScore");
+var count = 60;
 
 // var questionImage = document.getElementById('question-image');
 
@@ -32,7 +33,6 @@ if (count <= 0)
     clearInterval(counter);
      // counter ended, do something here
      // show the user score and allow them to put in initials
-     // display score in relation to current high score
      // Store final score in local storage
      // something like localStorage.setItem  --and-- localStorage.getItem
      // return;
@@ -42,13 +42,16 @@ if (count <= 0)
 }
 });
 
-var score = 0;
+
+// create an empty variable for the user score
+var userScore = ("");
+// store the user score into local storage
 document.getElementById("answer-buttons").onclick = function() {
-    localStorage.setItem("score", JSON.stringify(score));
+    localStorage.setItem("userScore", JSON.stringify(userScore));
 };
 
 // store all scores posted into local storage into empty array
-// var highScores = localStorage.setItem("highScores", JSON.stringify([]));
+var highScores = localStorage.setItem("highScores", JSON.stringify([]));
 
 // Pull all scores posted from local storage
 var highScores = JSON.parse(localStorage.getItem("highScores")) || [];
@@ -133,6 +136,8 @@ var selectAnswer = function(e) {
     setStatusClass(document.body, correct);
 
     // Convert to an array
+    // reveal the next question button if there are still questions left and still time left on the clock
+    // otherwise initiate restart
     Array.from(answerButtonsEl.children).forEach(button => {
     setStatusClass(button, button.dataset.correct)
     })
@@ -155,7 +160,7 @@ var setStatusClass = function(element, correct) {
     clearStatusClass(element);
     if (correct) {
     element.classList.add('correct');
-    score++;
+    userScore++;
     } else {
     element.classList.add('incorrect');
     count = count -2;
