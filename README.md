@@ -21,4 +21,3 @@
 
 ## Contributors
 * @kevin-foreman
-* 
