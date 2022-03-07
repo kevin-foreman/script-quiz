@@ -146,6 +146,7 @@ var selectAnswer = function(e) {
     } else {
     alert("You answered all the questions, or you ran out of time, let's see your score")
     startButton.innerText = "Restart";
+    userScore = ("");
     startButton.classList.remove('hide');
 
     // relaod the page after the user has entered their initials but maintain local storage
