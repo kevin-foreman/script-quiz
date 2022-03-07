@@ -33,61 +33,60 @@ if (count <= 0)
      // counter ended, do something here
      // show the user score and allow them to put in initials
      // display score in relation to current high score
-     // figure out how to store final score in local storage
+     // Store final score in local storage
      // something like localStorage.setItem  --and-- localStorage.getItem
      // return;
 };
 // Add code to html for showing the number of seconds on the page using span
-  document.getElementById("timer").innerHTML=count + " seconds remaining"; // prints the time plus the words ... seconds remaining
+  document.getElementById("timer").innerHTML=count + " seconds remaining"; // prints the number to the page plus the words ... seconds remaining
 }
 });
 
-var score =0;
+var score = 0;
 document.getElementById("answer-buttons").onclick = function() {
     localStorage.setItem("score", JSON.stringify(score));
 };
 
- var loadScores = function() {
-     score = JSON.parse(localStorage.getItem("score"));
-     load = window.localStorage;
-     loadScores();
-}
+// store all scores posted into local storage into empty array
+// var highScores = localStorage.setItem("highScores", JSON.stringify([]));
 
-window.addEventListener("DOMContentLoaded", (event) => {
-    console.log("DOM fully loaded and parsed");
-})
+// Pull all scores posted from local storage
+var highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+
+
 // user selects next question, give some encouragement
 // increment the question index by one to get another random question from the array
 // call for the next random question
 
 $("#next-btn").click(function() {
     alert("Keep it up!");
-    currentQuestionIndex++;
+    questionIndex++;
     getNextQuestion();
 });
 
 var randomQuestions = function(){};
-var currentQuestionIndex= function(){};
-// console.log(randomQuestions, currentQuestionIndex);
+var questionIndex= function(){};
+// console.log(randomQuestions, questionIndex);
 
 // Start game function which will hide the start button by added the hide class
 // will also reveal the question container element by removing that class
 var startGame = function() {
+    count = 60
     startButton.classList.add('hide');
     // math.random generates a number betwee one and zero
     // grab a question whether the number of the question is either more than zero or less than zero 50% of the time, so it's random
     randomQuestions = questions.sort(() => Math.random() - .5);
-    currentQuestionIndex = 0;
+    questionIndex = 0;
     questionContainerEl.classList.remove('hide');
     getNextQuestion();
-    console.log(currentQuestionIndex);
+    console.log(questionIndex);
 };
 
 
-// make a function to move through the questions after the currentQuestionIndex
+// make a function to move through the questions after the questionIndex
 var getNextQuestion = function() {
     clearAnswers();
-    showQuestion(randomQuestions[currentQuestionIndex]);
+    showQuestion(randomQuestions[questionIndex]);
 };
 // only display the amount of answer buttons to match the number of available answers
 // clear old answers for a new question and answer
@@ -125,6 +124,9 @@ var showQuestion = function(question) {
 // send feedback depending on where the user clicked
 // Add restart modification for when all the questions have been answered
 // Add restart modification for when the timer runs out 
+// realizing I don't need the restart functionality if I use the window.location.reload(false)
+// realizing I do need the restart functionality so I can still call for the user to input initials
+// realizing I still need the page reload functionalitly to reset the score counter for the user
 var selectAnswer = function(e) {
     var selectedButton = e.target
     var correct = selectedButton.dataset.correct
@@ -134,12 +136,15 @@ var selectAnswer = function(e) {
     Array.from(answerButtonsEl.children).forEach(button => {
     setStatusClass(button, button.dataset.correct)
     })
-    if (randomQuestions.length > currentQuestionIndex + 1 && count >= 1) {
+    if (randomQuestions.length > questionIndex + 1 && count >= 1) {
     nextButton.classList.remove('hide');
     } else {
     alert("You answered all the questions, or you ran out of time, let's see your score")
     startButton.innerText = "Restart";
     startButton.classList.remove('hide');
+
+    // relaod the page after the user has entered their initials but maintain local storage
+    // window.location.reload(false);
     }
 };
 
@@ -210,6 +215,8 @@ var questions = [ // some questions will have images, add them as an additional 
         { text: 'It refers to the HTML element we want to affect as a result of our dispatched event.', correct: false }
     ]
     },
+
+    // for some reason this question breaks my code, could not figure it out
     // {
     // question: 'What is the JavaScript equivalent to a jQuery Selector?',
     // answers: [
@@ -222,7 +229,7 @@ var questions = [ // some questions will have images, add them as an additional 
     {
     question: 'If you save your array of objects to the browser local storage and it looks like [Object object] when you visit it in Chrome DevTools, what is wrong?',
     answers: [
-        { text: 'The array was not strinified with JSON.strigify() before saving it in Local Storage', correct: true },
+        { text: 'The array was not stringified with JSON.strigify() before saving it in Local Storage', correct: true },
         { text: 'The array was not parsed with JSON.parse() before saving it to Local Storage.', correct: false }
     ]
     },
@@ -235,15 +242,6 @@ var questions = [ // some questions will have images, add them as an additional 
         { text: '.mouseover()', correct: false }
     ]
     },
-    // {
-    // question: 'What is the JavaScript equivalent to a jQuery Selector?',
-    // nswers: [
-    //     { text: '.getElementByClass()', correct: false },
-    //     { text: '.querySelectory()', correct: true },
-    //     { text: '.querybyID()', correct: false },
-    //     { text: '.documentElement()', correct: false }
-    // ]
-    // },
     {
     question: 'Which element can the submit event be attached to?',
     answers: [
